@@ -105,8 +105,18 @@ public class MessageSenderImplTest {
         String expected = "Добро пожаловать";
         String preferences = new LocalizationServiceImpl().locale(Country.RUSSIA);
 
-        Assertions.assertEquals(expected,preferences);
+        Assertions.assertEquals(expected, preferences);
     }
 
+    @Test()
+    void testExpectedException() {
+
+        RuntimeException thrown = Assertions.assertThrows(RuntimeException.class, () -> {
+            GeoServiceImpl exception = new GeoServiceImpl();
+            exception.byCoordinates(1, 1);
+        });
+
+        Assertions.assertEquals("Not implemented", thrown.getMessage());
+    }
 
 }
